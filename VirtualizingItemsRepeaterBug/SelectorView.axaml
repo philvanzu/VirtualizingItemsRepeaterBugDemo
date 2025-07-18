@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:VirtualizingItemsRepeaterBug"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="local:SelectorViewModel"
+             x:Class="VirtualizingItemsRepeaterBug.SelectorView">
+        <ScrollViewer x:Name="ScrollViewer" IsDeferredScrollingEnabled="True">
+            <local:VirtualizingItemsRepeater ItemsSource="{Binding Items}" 
+                                           ItemPreparedCommand="{Binding ItemPreparedCommand}"
+                                           ItemClearingCommand="{Binding ItemClearingCommand}"
+                                           x:Name="BooksRepeater">
+
+                <local:VirtualizingItemsRepeater.Layout>
+                    <!--<WrapLayout Orientation="Horizontal"/>-->
+                    <UniformGridLayout Orientation="Horizontal" MaximumRowsOrColumns="0" MinColumnSpacing="8" MinRowSpacing="8"/>
+                </local:VirtualizingItemsRepeater.Layout>
+                <local:VirtualizingItemsRepeater.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="blue"
+                                Height="200" Width="200"
+                                BorderBrush="Red"
+                                BorderThickness="1">
+                            <TextBlock Text="{Binding ItemText}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       TextWrapping="Wrap"/>
+                        </Border>
+                    </DataTemplate>
+                </local:VirtualizingItemsRepeater.ItemTemplate>
+            </local:VirtualizingItemsRepeater>
+        </ScrollViewer>
+
+</UserControl>
